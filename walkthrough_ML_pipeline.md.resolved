@@ -1,0 +1,58 @@
+# GDP Growth Machine Learning Pipeline
+This walkthrough outlines the full implementation of the internal ML pipeline for predicting GDP Growth.
+
+## Overview
+We built an Airflow DAG (`gdp_growth_ml_predictor`) that fetches engineered features from World Bank historical data (stored in `features.macroeconomic_features`), trains a Random Forest model, and predicts the GDP Growth for 1 year ahead.
+
+## Implementation Details
+1. **Dependency Installation**: Added `scikit-learn` to the Airflow dependencies inside [docker-compose.yaml](file:///home/achira363/Documents/DataEN_Final/docker-compose.yaml) to enable model training directly within the scheduler/worker environments.
+2. **Feature Engineering**: 
+    - The target variable (`target_gdp_growth_next_yr`) is created dynamically using the pandas `shift(-1)` function grouped by country. This correctly aligns "This year's features" with "Next year's GDP Growth (target)".
+    - Base Features: `gdp_growth_pct`, `inflation_pct`, `unemployment_pct`, `trade_pct_gdp`.
+    - Handles missing data using median imputation so the model doesn't crash on incomplete country records.
+3. **Model Training**: 
+    - Separates the dataset into an 80/20 train/test split.
+    - Trains a `RandomForestRegressor` with 100 decision trees (depth=10).
+    - Logs R2 score and MSE metrics to Airflow logs.
+4. **Generating Predictions**:
+    - Selects the most recent year's data for all countries.
+    - Inferences a 1-year forward prediction using the trained model.
+    - Saves the generated forecasts into the `predictions.model_outputs` table using `psycopg2`.
+
+## Execution Results
+The DAG executed successfully spanning thousands of feature records.
+
+**Airflow Log Highlights:**
+```text
+[INFO] - Loaded 6529 feature rows.
+[INFO] - Usable rows for training: 5453
+[INFO] - Countries to predict forward: 215
+[INFO] - --- Model Performance ---
+[INFO] - MSE: 21.25
+[INFO] - R2 Score: 0.14
+[INFO] - --- Feature Importances ---
+[INFO] - gdp_growth_pct: 0.5641
+[INFO] - inflation_pct: 0.1418
+[INFO] - unemployment_pct: 0.1296
+[INFO] - trade_pct_gdp: 0.1645
+[INFO] - Saving 215 predictions to database...
+```
+
+*(Note: While the R2 score is relatively low, this is purely a baseline model using simplistic features for demonstration. Additional feature engineering, such as more lag metrics or macroeconomic events, could improve prediction variance capture).*
+
+### Sample Forecasts (Postgres Query)
+Stored in the prediction table, predicting 1-year forward growth for 2025:
+
+| Country Code | Predicted Year | Target Name | Predicted Value (Growth %) | 
+|---|---|---|---|
+| USA | 2025 | gdp_growth_pct | 2.52% |
+| CHN | 2025 | gdp_growth_pct | 5.23% |
+| THA | 2024 | gdp_growth_pct | 3.20% |
+| JPN | 2024 | gdp_growth_pct | 1.05% |
+
+You can query this data dynamically inside pgAdmin using:
+```sql
+SELECT country_code, prediction_year, predicted_value 
+FROM predictions.model_outputs 
+ORDER BY predicted_value DESC;
+```

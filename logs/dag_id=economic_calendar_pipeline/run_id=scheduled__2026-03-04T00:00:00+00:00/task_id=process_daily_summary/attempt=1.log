@@ -1,0 +1,18 @@
+[2026-03-05T08:02:05.875+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-03-05T08:02:05.889+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: economic_calendar_pipeline.process_daily_summary scheduled__2026-03-04T00:00:00+00:00 [queued]>
+[2026-03-05T08:02:05.893+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: economic_calendar_pipeline.process_daily_summary scheduled__2026-03-04T00:00:00+00:00 [queued]>
+[2026-03-05T08:02:05.894+0000] {taskinstance.py:2867} INFO - Starting attempt 1 of 3
+[2026-03-05T08:02:05.902+0000] {taskinstance.py:2890} INFO - Executing <Task(PythonOperator): process_daily_summary> on 2026-03-04 00:00:00+00:00
+[2026-03-05T08:02:05.909+0000] {standard_task_runner.py:72} INFO - Started process 336 to run task
+[2026-03-05T08:02:05.911+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'economic_calendar_pipeline', 'process_daily_summary', 'scheduled__2026-03-04T00:00:00+00:00', '--job-id', '5', '--raw', '--subdir', 'DAGS_FOLDER/example_economic_pipeline.py', '--cfg-path', '/tmp/tmp75h9xbfh']
+[2026-03-05T08:02:05.913+0000] {standard_task_runner.py:105} INFO - Job 5: Subtask process_daily_summary
+[2026-03-05T08:02:05.953+0000] {task_command.py:467} INFO - Running <TaskInstance: economic_calendar_pipeline.process_daily_summary scheduled__2026-03-04T00:00:00+00:00 [running]> on host 19b1d52cfa30
+[2026-03-05T08:02:06.010+0000] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='data-team' AIRFLOW_CTX_DAG_ID='economic_calendar_pipeline' AIRFLOW_CTX_TASK_ID='process_daily_summary' AIRFLOW_CTX_EXECUTION_DATE='2026-03-04T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-03-04T00:00:00+00:00'
+[2026-03-05T08:02:06.011+0000] {taskinstance.py:732} INFO - ::endgroup::
+[2026-03-05T08:02:06.028+0000] {example_economic_pipeline.py:264} INFO - Updated 2 daily summary rows
+[2026-03-05T08:02:06.038+0000] {python.py:240} INFO - Done. Returned value was: 2
+[2026-03-05T08:02:06.055+0000] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2026-03-05T08:02:06.055+0000] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=economic_calendar_pipeline, task_id=process_daily_summary, run_id=scheduled__2026-03-04T00:00:00+00:00, execution_date=20260304T000000, start_date=20260305T080205, end_date=20260305T080206
+[2026-03-05T08:02:06.083+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2026-03-05T08:02:06.100+0000] {taskinstance.py:3901} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2026-03-05T08:02:06.101+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

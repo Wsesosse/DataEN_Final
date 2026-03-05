@@ -1,0 +1,24 @@
+[2026-03-05T09:16:23.638+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-03-05T09:16:23.655+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: gdp_growth_ml_predictor.log_completion manual__2026-03-05T09:16:19+00:00 [queued]>
+[2026-03-05T09:16:23.661+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: gdp_growth_ml_predictor.log_completion manual__2026-03-05T09:16:19+00:00 [queued]>
+[2026-03-05T09:16:23.661+0000] {taskinstance.py:2867} INFO - Starting attempt 1 of 2
+[2026-03-05T09:16:23.669+0000] {taskinstance.py:2890} INFO - Executing <Task(PythonOperator): log_completion> on 2026-03-05 09:16:19+00:00
+[2026-03-05T09:16:23.679+0000] {standard_task_runner.py:72} INFO - Started process 305 to run task
+[2026-03-05T09:16:23.681+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'gdp_growth_ml_predictor', 'log_completion', 'manual__2026-03-05T09:16:19+00:00', '--job-id', '11', '--raw', '--subdir', 'DAGS_FOLDER/ml_gdp_prediction.py', '--cfg-path', '/tmp/tmpgi199cv4']
+[2026-03-05T09:16:23.683+0000] {standard_task_runner.py:105} INFO - Job 11: Subtask log_completion
+[2026-03-05T09:16:23.720+0000] {task_command.py:467} INFO - Running <TaskInstance: gdp_growth_ml_predictor.log_completion manual__2026-03-05T09:16:19+00:00 [running]> on host f7258073729b
+[2026-03-05T09:16:23.780+0000] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='data-team' AIRFLOW_CTX_DAG_ID='gdp_growth_ml_predictor' AIRFLOW_CTX_TASK_ID='log_completion' AIRFLOW_CTX_EXECUTION_DATE='2026-03-05T09:16:19+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-03-05T09:16:19+00:00'
+[2026-03-05T09:16:23.781+0000] {taskinstance.py:732} INFO - ::endgroup::
+[2026-03-05T09:16:23.797+0000] {ml_gdp_prediction.py:153} INFO - ==================================================
+[2026-03-05T09:16:23.797+0000] {ml_gdp_prediction.py:154} INFO - ML GDP Prediction Pipeline Completed
+[2026-03-05T09:16:23.797+0000] {ml_gdp_prediction.py:155} INFO - ==================================================
+[2026-03-05T09:16:23.798+0000] {ml_gdp_prediction.py:157} INFO - Model R2 Score:     0.14
+[2026-03-05T09:16:23.798+0000] {ml_gdp_prediction.py:158} INFO - Rows trained on:    5453
+[2026-03-05T09:16:23.798+0000] {ml_gdp_prediction.py:159} INFO - Predictions saved:  263
+[2026-03-05T09:16:23.798+0000] {ml_gdp_prediction.py:160} INFO - ==================================================
+[2026-03-05T09:16:23.798+0000] {python.py:240} INFO - Done. Returned value was: None
+[2026-03-05T09:16:23.806+0000] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2026-03-05T09:16:23.806+0000] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=gdp_growth_ml_predictor, task_id=log_completion, run_id=manual__2026-03-05T09:16:19+00:00, execution_date=20260305T091619, start_date=20260305T091623, end_date=20260305T091623
+[2026-03-05T09:16:23.854+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2026-03-05T09:16:23.866+0000] {taskinstance.py:3901} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-03-05T09:16:23.868+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

@@ -1,0 +1,32 @@
+[2026-03-05T09:40:20.689+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-03-05T09:40:20.704+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: economic_calendar_pipeline.fetch_economic_data manual__2026-03-05T09:40:19.960185+00:00 [queued]>
+[2026-03-05T09:40:20.709+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: economic_calendar_pipeline.fetch_economic_data manual__2026-03-05T09:40:19.960185+00:00 [queued]>
+[2026-03-05T09:40:20.709+0000] {taskinstance.py:2867} INFO - Starting attempt 1 of 3
+[2026-03-05T09:40:20.717+0000] {taskinstance.py:2890} INFO - Executing <Task(PythonOperator): fetch_economic_data> on 2026-03-05 09:40:19.960185+00:00
+[2026-03-05T09:40:20.722+0000] {standard_task_runner.py:72} INFO - Started process 2324 to run task
+[2026-03-05T09:40:20.725+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'economic_calendar_pipeline', 'fetch_economic_data', 'manual__2026-03-05T09:40:19.960185+00:00', '--job-id', '12', '--raw', '--subdir', 'DAGS_FOLDER/example_economic_pipeline.py', '--cfg-path', '/tmp/tmpih9y8jot']
+[2026-03-05T09:40:20.727+0000] {standard_task_runner.py:105} INFO - Job 12: Subtask fetch_economic_data
+[2026-03-05T09:40:20.763+0000] {task_command.py:467} INFO - Running <TaskInstance: economic_calendar_pipeline.fetch_economic_data manual__2026-03-05T09:40:19.960185+00:00 [running]> on host f7258073729b
+[2026-03-05T09:40:20.824+0000] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='data-team' AIRFLOW_CTX_DAG_ID='economic_calendar_pipeline' AIRFLOW_CTX_TASK_ID='fetch_economic_data' AIRFLOW_CTX_EXECUTION_DATE='2026-03-05T09:40:19.960185+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-03-05T09:40:19.960185+00:00'
+[2026-03-05T09:40:20.825+0000] {taskinstance.py:732} INFO - ::endgroup::
+[2026-03-05T09:40:20.834+0000] {example_economic_pipeline.py:50} INFO - Fetching economic calendar from https://api.tradingeconomics.com/calendar
+[2026-03-05T09:40:25.649+0000] {example_economic_pipeline.py:59} INFO - Fetched 3 events
+[2026-03-05T09:40:25.656+0000] {example_economic_pipeline.py:109} ERROR - Error inserting event 383798: relation "raw_data.economic_calendar" does not exist
+LINE 2:                 INSERT INTO raw_data.economic_calendar
+                                    ^
+
+[2026-03-05T09:40:25.657+0000] {example_economic_pipeline.py:109} ERROR - Error inserting event 383630: relation "raw_data.economic_calendar" does not exist
+LINE 2:                 INSERT INTO raw_data.economic_calendar
+                                    ^
+
+[2026-03-05T09:40:25.657+0000] {example_economic_pipeline.py:109} ERROR - Error inserting event 383631: relation "raw_data.economic_calendar" does not exist
+LINE 2:                 INSERT INTO raw_data.economic_calendar
+                                    ^
+
+[2026-03-05T09:40:25.657+0000] {example_economic_pipeline.py:117} INFO - Inserted/updated 0 events into raw_data.economic_calendar
+[2026-03-05T09:40:25.670+0000] {python.py:240} INFO - Done. Returned value was: 0
+[2026-03-05T09:40:25.690+0000] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2026-03-05T09:40:25.691+0000] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=economic_calendar_pipeline, task_id=fetch_economic_data, run_id=manual__2026-03-05T09:40:19.960185+00:00, execution_date=20260305T094019, start_date=20260305T094020, end_date=20260305T094025
+[2026-03-05T09:40:25.752+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2026-03-05T09:40:25.782+0000] {taskinstance.py:3901} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2026-03-05T09:40:25.784+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

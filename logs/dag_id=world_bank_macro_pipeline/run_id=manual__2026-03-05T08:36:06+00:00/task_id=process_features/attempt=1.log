@@ -1,0 +1,21 @@
+[2026-03-05T08:42:25.317+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-03-05T08:42:25.333+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: world_bank_macro_pipeline.process_features manual__2026-03-05T08:36:06+00:00 [queued]>
+[2026-03-05T08:42:25.338+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: world_bank_macro_pipeline.process_features manual__2026-03-05T08:36:06+00:00 [queued]>
+[2026-03-05T08:42:25.339+0000] {taskinstance.py:2867} INFO - Starting attempt 1 of 3
+[2026-03-05T08:42:25.346+0000] {taskinstance.py:2890} INFO - Executing <Task(PythonOperator): process_features> on 2026-03-05 08:36:06+00:00
+[2026-03-05T08:42:25.352+0000] {standard_task_runner.py:72} INFO - Started process 592 to run task
+[2026-03-05T08:42:25.355+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'world_bank_macro_pipeline', 'process_features', 'manual__2026-03-05T08:36:06+00:00', '--job-id', '5', '--raw', '--subdir', 'DAGS_FOLDER/world_bank_pipeline.py', '--cfg-path', '/tmp/tmpq_siixxz']
+[2026-03-05T08:42:25.357+0000] {standard_task_runner.py:105} INFO - Job 5: Subtask process_features
+[2026-03-05T08:42:25.391+0000] {task_command.py:467} INFO - Running <TaskInstance: world_bank_macro_pipeline.process_features manual__2026-03-05T08:36:06+00:00 [running]> on host 55c90f0399c5
+[2026-03-05T08:42:25.449+0000] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='data-team' AIRFLOW_CTX_DAG_ID='world_bank_macro_pipeline' AIRFLOW_CTX_TASK_ID='process_features' AIRFLOW_CTX_EXECUTION_DATE='2026-03-05T08:36:06+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-03-05T08:36:06+00:00'
+[2026-03-05T08:42:25.450+0000] {taskinstance.py:732} INFO - ::endgroup::
+[2026-03-05T08:42:25.467+0000] {logging_mixin.py:190} WARNING - /opt/***/dags/world_bank_pipeline.py:136 UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+[2026-03-05T08:42:25.498+0000] {world_bank_pipeline.py:143} INFO - Loaded 29795 raw records for processing
+[2026-03-05T08:42:25.520+0000] {world_bank_pipeline.py:171} INFO - Pivoted into 6529 country-year feature rows
+[2026-03-05T08:42:25.913+0000] {world_bank_pipeline.py:198} INFO - Successfully loaded 6529 rows into features.macroeconomic_features
+[2026-03-05T08:42:25.925+0000] {python.py:240} INFO - Done. Returned value was: 6529
+[2026-03-05T08:42:25.942+0000] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2026-03-05T08:42:25.942+0000] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=world_bank_macro_pipeline, task_id=process_features, run_id=manual__2026-03-05T08:36:06+00:00, execution_date=20260305T083606, start_date=20260305T084225, end_date=20260305T084225
+[2026-03-05T08:42:26.008+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2026-03-05T08:42:26.025+0000] {taskinstance.py:3901} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2026-03-05T08:42:26.027+0000] {local_task_job_runner.py:245} INFO - ::endgroup::
