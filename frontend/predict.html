@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predict - GDP Growth ML Predictor</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">
+                <i class="bi bi-graph-up"></i> GDP Growth Predictor
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html"><i class="bi bi-house"></i> หน้าหลัก</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="dashboard.html"><i class="bi bi-speedometer"></i> แดชบอร์ด</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="predict.html"><i class="bi bi-magic"></i> ทำนายผล</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <div class="bg-light py-4 border-bottom">
+        <div class="container">
+            <h1 class="mb-2"><i class="bi bi-crystal-ball"></i> GDP Growth Prediction</h1>
+            <p class="text-muted">ทำการทำนาย GDP Growth ด้วยข้อมูลใหม่</p>
+        </div>
+    </div>
+
+    <main class="container my-5">
+        <div class="row">
+            <!-- Prediction Form -->
+            <div class="col-lg-8 mb-4">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0"><i class="bi bi-pencil-square"></i> Input Features</h5>
+                    </div>
+                    <div class="card-body">
+                        <form id="predictionForm">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="gdpBase" class="form-label">Base GDP (Billion USD) <span class="text-danger">*</span></label>
+                                    <input type="number" class="form-control" id="gdpBase" name="gdpBase" step="0.01" placeholder="e.g., 500" required>
+                                    <small class="text-muted">Current or past year GDP base</small>
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+                                    <label for="inflation" class="form-label">Inflation Rate (%) <span class="text-danger">*</span></label>
+                                    <input type="number" class="form-control" id="inflation" name="inflation" step="0.01" placeholder="e.g., 2.5" required>
+                                    <small class="text-muted">Expected inflation rate</small>
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+                                    <label for="unemployment" class="form-label">Unemployment Rate (%) <span class="text-danger">*</span></label>
+                                    <input type="number" class="form-control" id="unemployment" name="unemployment" step="0.01" placeholder="e.g., 4.2" required>
+                                    <small class="text-muted">Current unemployment rate</small>
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+                                    <label for="interestRate" class="form-label">Interest Rate (%) <span class="text-danger">*</span></label>
+                                    <input type="number" class="form-control" id="interestRate" name="interestRate" step="0.01" placeholder="e.g., 3.5" required>
+                                    <small class="text-muted">Central bank interest rate</small>
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+                                    <label for="exports" class="form-label">Exports (Billion USD) <span class="text-danger">*</span></label>
+                                    <input type="number" class="form-control" id="exports" name="exports" step="0.01" placeholder="e.g., 150" required>
+                                    <small class="text-muted">Total exports value</small>
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+                                    <label for="imports" class="form-label">Imports (Billion USD) <span class="text-danger">*</span></label>
+                                    <input type="number" class="form-control" id="imports" name="imports" step="0.01" placeholder="e.g., 140" required>
+                                    <small class="text-muted">Total imports value</small>
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+                                    <label for="investment" class="form-label">Investment (Billion USD) <span class="text-danger">*</span></label>
+                                    <input type="number" class="form-control" id="investment" name="investment" step="0.01" placeholder="e.g., 200" required>
+                                    <small class="text-muted">Total business investment</small>
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+                                    <label for="consumption" class="form-label">Consumer Spending (Billion USD) <span class="text-danger">*</span></label>
+                                    <input type="number" class="form-control" id="consumption" name="consumption" step="0.01" placeholder="e.g., 350" required>
+                                    <small class="text-muted">Personal consumption expenditure</small>
+                                </div>
+                            </div>
+
+                            <hr>
+
+                            <div class="d-grid gap-2">
+                                <button type="submit" class="btn btn-primary btn-lg">
+                                    <i class="bi bi-lightning"></i> ทำนายผล
+                                </button>
+                                <button type="reset" class="btn btn-secondary">
+                                    <i class="bi bi-arrow-counterclockwise"></i> Clear
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Prediction Result -->
+            <div class="col-lg-4 mb-4">
+                <div class="card sticky-top" style="top: 20px;">
+                    <div class="card-header bg-success text-white">
+                        <h5 class="mb-0"><i class="bi bi-check-circle"></i> Prediction Result</h5>
+                    </div>
+                    <div class="card-body text-center" id="resultContainer">
+                        <p class="text-muted py-5">
+                            <i class="bi bi-hourglass-split" style="font-size: 2rem;"></i><br>
+                            Fill the form and click "ทำนายผล" to get prediction
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Recent Predictions -->
+                <div class="card mt-4">
+                    <div class="card-header bg-light">
+                        <h5 class="mb-0"><i class="bi bi-clock-history"></i> Recent Predictions</h5>
+                    </div>
+                    <div class="card-body p-0">
+                        <ul class="list-group list-group-flush" id="recentList">
+                            <li class="list-group-item text-muted text-center py-3">No predictions yet</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Info Section -->
+        <div class="row mt-5">
+            <div class="col-12">
+                <div class="card bg-light border-0">
+                    <div class="card-body">
+                        <h5><i class="bi bi-info-circle"></i> How the Model Works</h5>
+                        <p class="mb-2">Our ML model uses machine learning algorithms to predict GDP growth based on key economic indicators:</p>
+                        <ul class="mb-0">
+                            <li><strong>Base GDP:</strong> Starting point for economic size</li>
+                            <li><strong>Inflation Rate:</strong> Price level changes in economy</li>
+                            <li><strong>Unemployment:</strong> Labor market health indicator</li>
+                            <li><strong>Interest Rate:</strong> Borrowing cost and monetary policy</li>
+                            <li><strong>Trade Balance:</strong> Imports vs exports ratio</li>
+                            <li><strong>Investment & Consumption:</strong> Demand side drivers</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-4 mt-5">
+        <div class="container">
+            <p class="mb-2">GDP Growth ML Predictor Dashboard</p>
+            <p class="text-muted small">Prediction powered by trained ML models</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js?v=5"></script>
+    <script>
+        document.getElementById('predictionForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            makePrediction();
+        });
+
+        // Load recent predictions on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            loadRecentPredictions();
+        });
+    </script>
+</body>
+</html>

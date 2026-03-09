@@ -1,0 +1,9 @@
+pandas
+numpy
+psycopg2
+scikit-learn
+flask
+flask-cors
+requests
+python-dotenv
+pytest

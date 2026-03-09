@@ -1,0 +1,36 @@
+{
+  "name": "gdp-growth-ml-predictor-frontend",
+  "version": "1.0.0",
+  "description": "Frontend dashboard for GDP Growth ML Prediction System",
+  "main": "index.html",
+  "scripts": {
+    "start": "python -m http.server 8000",
+    "serve": "http-server -p 8000",
+    "dev": "python -m http.server 8000"
+  },
+  "keywords": [
+    "gdp",
+    "machine-learning",
+    "prediction",
+    "dashboard",
+    "airflow"
+  ],
+  "author": "DataEN Team",
+  "license": "MIT",
+  "dependencies": {
+    "bootstrap": "^5.3.0",
+    "bootstrap-icons": "^1.10.0",
+    "chart.js": "^4.4.0"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/DataEN_Final"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/DataEN_Final/issues"
+  },
+  "homepage": "https://github.com/yourusername/DataEN_Final#readme"
+}
